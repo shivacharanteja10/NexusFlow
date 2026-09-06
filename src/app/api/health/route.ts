@@ -5,7 +5,7 @@ import { db } from '@/libs/DB';
 export async function GET() {
   try {
     const result = await db.execute(sql`SELECT 1 as healthy`);
-    const isHealthy = result && result.length > 0;
+    const isHealthy = result !== null;
 
     if (isHealthy) {
       return NextResponse.json({ status: 'ok', database: 'connected', timestamp: new Date().toISOString() });
